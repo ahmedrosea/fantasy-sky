@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wego_clone/components/departure/departure_item.dart';
+import 'package:wego_clone/state-management/provider.dart';
 
 import '../../../app_colors.dart';
 
@@ -36,7 +38,12 @@ class DepartureScreen extends StatelessWidget {
               ),
               DepartureItem(
                 cardTitle: 'Cairo Airport',
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<FlightProvider>()
+                      .setDeparture('Cairo Airport', 'CAI');
+                  Navigator.pop(context);
+                },
                 cardIcon: Icon(
                   Icons.flight_outlined,
                   size: 26.0,
@@ -47,7 +54,12 @@ class DepartureScreen extends StatelessWidget {
               ),
               DepartureItem(
                 cardTitle: 'Sphinix International Airport',
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<FlightProvider>()
+                      .setDeparture('Sphinix International Airport', 'SPX');
+                  Navigator.pop(context);
+                },
                 cardIcon: Icon(
                   Icons.flight_outlined,
                   size: 26.0,
@@ -58,7 +70,12 @@ class DepartureScreen extends StatelessWidget {
               ),
               DepartureItem(
                 cardTitle: 'Alexandria Airport',
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<FlightProvider>()
+                      .setDeparture('Alexandria Airport', 'HBE');
+                  Navigator.pop(context);
+                },
                 cardIcon: Icon(
                   Icons.flight_outlined,
                   size: 26.0,

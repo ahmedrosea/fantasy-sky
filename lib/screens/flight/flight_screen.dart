@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:wego_clone/app_colors.dart';
 import 'package:wego_clone/screens/flight/one_way_screen/one_way_screen.dart';
+import 'package:wego_clone/screens/flight/round_trip/round_trip_screen.dart';
+import 'package:wego_clone/translations/locale_keys.g.dart';
 
 class FlightScreen extends StatelessWidget {
   const FlightScreen({Key? key}) : super(key: key);
@@ -11,7 +14,7 @@ class FlightScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.defaultThemeColor,
         elevation: 0.0,
-        title: const Text('Flight'),
+        title: Text(LocaleKeys.flight.tr()),
         centerTitle: true,
         actions: [
           Padding(
@@ -42,12 +45,12 @@ class FlightScreen extends StatelessWidget {
                 indicatorColor: AppColors.defaultThemeColor,
                 indicatorPadding: EdgeInsets.zero,
                 indicatorWeight: 4.0,
-                tabs: const [
+                tabs: [
                   Tab(
-                    text: 'ONE-WAY',
+                    text: LocaleKeys.oneWay.tr(),
                   ),
                   Tab(
-                    text: 'ROUND TRIP',
+                    text: LocaleKeys.roundTrip.tr(),
                   ),
                 ],
               ),
@@ -61,9 +64,7 @@ class FlightScreen extends StatelessWidget {
               child: TabBarView(
                 children: [
                   OneWayScreen(),
-                  const Center(
-                    child: Text('Round Trip'),
-                  ),
+                  RoundTripScreen(),
                 ],
               ),
             ),

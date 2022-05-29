@@ -22,7 +22,7 @@ class FlightItem extends StatelessWidget {
               size: 26.0,
             ),
             const SizedBox(
-              width: 20.0,
+              width: 10.0,
             ),
             content
           ],

@@ -1,25 +1,32 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:wego_clone/app_colors.dart';
 import 'package:wego_clone/components/default_home_button.dart';
+import 'package:wego_clone/screens/hotels/hotels_screen.dart';
+import 'package:wego_clone/screens/transport/transport_screen.dart';
+import 'package:wego_clone/screens/vr_tours/vr_tours_screen.dart';
+import 'package:wego_clone/translations/locale_keys.g.dart';
 
 import 'flight/flight_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
-        ClipRRect(
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
           child: Image.asset(
             'assets/images/home_background_hero_image.jpg',
+            fit: BoxFit.fill,
           ),
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.elliptical(
-                  MediaQuery.of(context).size.width * 0.5, 30.0),
-              bottomRight: Radius.elliptical(
-                  MediaQuery.of(context).size.width * 0.5, 30.0)),
         ),
         Center(
           child: Column(
@@ -45,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      title: 'Flight',
+                      title: LocaleKeys.flight.tr(),
                     ),
                     const SizedBox(
                       width: 10.0,
@@ -56,8 +63,15 @@ class HomeScreen extends StatelessWidget {
                         size: 40.0,
                         color: AppColors.defaultThemeColor,
                       ),
-                      onPressed: () {},
-                      title: 'Hotels',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HotelsScreen(),
+                          ),
+                        );
+                      },
+                      title: LocaleKeys.hotels.tr(),
                     ),
                   ],
                 ),
@@ -74,8 +88,15 @@ class HomeScreen extends StatelessWidget {
                         size: 40.0,
                         color: AppColors.defaultThemeColor,
                       ),
-                      onPressed: () {},
-                      title: 'Transport',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TransportScreen(),
+                          ),
+                        );
+                      },
+                      title: LocaleKeys.transport.tr(),
                     ),
                     const SizedBox(
                       width: 10.0,
@@ -86,8 +107,15 @@ class HomeScreen extends StatelessWidget {
                         size: 40.0,
                         color: AppColors.defaultThemeColor,
                       ),
-                      onPressed: () {},
-                      title: 'VR Tours',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VRToursScreen(),
+                          ),
+                        );
+                      },
+                      title: LocaleKeys.vrtours.tr(),
                     ),
                   ],
                 ),

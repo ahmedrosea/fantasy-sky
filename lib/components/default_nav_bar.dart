@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wego_clone/app_colors.dart';
 import 'package:wego_clone/screens/account_screen.dart';
 import 'package:wego_clone/screens/home_screen.dart';
+import 'package:wego_clone/translations/locale_keys.g.dart';
 
 class DefaultNavbar extends StatefulWidget {
   DefaultNavbar({Key? key}) : super(key: key);
@@ -23,16 +26,16 @@ class _DefaultNavbarState extends State<DefaultNavbar> {
         iconSize: 28.0,
         unselectedFontSize: 13.0,
         selectedFontSize: 13.0,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.home_outlined,
             ),
-            label: 'Home',
+            label: LocaleKeys.home.tr(),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_box_outlined),
-            label: 'Account',
+            icon: const Icon(CupertinoIcons.person_fill),
+            label: LocaleKeys.account.tr(),
           ),
         ],
         onTap: (index) {
@@ -44,3 +47,5 @@ class _DefaultNavbarState extends State<DefaultNavbar> {
     );
   }
 }
+
+//Icons.account_box_outlined

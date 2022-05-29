@@ -1,13 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wego_clone/app_colors.dart';
+import 'package:wego_clone/components/default_button.dart';
 import 'package:wego_clone/components/flight/flight_item.dart';
 import 'package:wego_clone/screens/flight/arrival/arrival_screen.dart';
 import 'package:wego_clone/screens/flight/departure/departure_screen.dart';
+import 'package:wego_clone/screens/flight/flight_search/flight_search_screen.dart';
 import 'package:wego_clone/screens/flight/passengers/passengers_screen.dart';
 import 'package:wego_clone/screens/flight/payments/payments_screen.dart';
 import 'package:wego_clone/state-management/provider.dart';
+import 'package:wego_clone/translations/locale_keys.g.dart';
 
 class OneWayScreen extends StatefulWidget {
   OneWayScreen({Key? key}) : super(key: key);
@@ -43,10 +47,11 @@ class _OneWayScreenState extends State<OneWayScreen> {
       ),
     ),
   ];
-  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    String departureDate = context.watch<FlightProvider>().date;
+    String departureDate = context.watch<FlightProvider>().date == 'Select'
+        ? LocaleKeys.select.tr()
+        : context.watch<FlightProvider>().date;
     int adultNumber = context.watch<FlightProvider>().adultNumber;
     int childNumber = context.watch<FlightProvider>().childNumber;
     int infantNumber = context.watch<FlightProvider>().infantNumber;
@@ -54,6 +59,17 @@ class _OneWayScreenState extends State<OneWayScreen> {
     bool isMasterCardChoosed =
         context.watch<FlightProvider>().isMasterCardChoosed;
     int _currentIndex = context.watch<FlightProvider>().choosedFlightClassIndex;
+    String departurePlace =
+        context.watch<FlightProvider>().departurePlace == 'Choose Departure'
+            ? LocaleKeys.chooseDeparture.tr()
+            : context.watch<FlightProvider>().departurePlace;
+    String departurePlaceCode =
+        context.watch<FlightProvider>().departurePlaceCode;
+    String arrivalPlace =
+        context.watch<FlightProvider>().arrivalPlace == 'Choose Arrival'
+            ? LocaleKeys.chooseArrival.tr()
+            : context.watch<FlightProvider>().arrivalPlace;
+    String arrivalPlaceCode = context.watch<FlightProvider>().arrivalPlaceCode;
     return Container(
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -69,7 +85,7 @@ class _OneWayScreenState extends State<OneWayScreen> {
             },
             icon: Icons.flight_takeoff_outlined,
             content: Text(
-              'Alexandria Airport (HBE)',
+              '$departurePlace ${departurePlaceCode == '' ? '' : '($departurePlaceCode)'}',
               style:
                   TextStyle(color: AppColors.defaultGreyColor, fontSize: 16.0),
             ),
@@ -85,7 +101,7 @@ class _OneWayScreenState extends State<OneWayScreen> {
             },
             icon: Icons.flight_land_outlined,
             content: Text(
-              'Cairo Airport (CAI)',
+              '$arrivalPlace ${arrivalPlaceCode == '' ? '' : '($arrivalPlaceCode)'}',
               style:
                   TextStyle(color: AppColors.defaultGreyColor, fontSize: 16.0),
             ),
@@ -99,7 +115,7 @@ class _OneWayScreenState extends State<OneWayScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Departure Date',
+                  LocaleKeys.departureDate.tr(),
                   style: TextStyle(
                     color: AppColors.defaultShadowedGreyColor,
                     fontSize: 13.0,
@@ -112,7 +128,7 @@ class _OneWayScreenState extends State<OneWayScreen> {
                   departureDate,
                   style: TextStyle(
                     color: AppColors.defaultGreyColor,
-                    fontSize: 16.0,
+                    fontSize: 14.0,
                   ),
                 ),
               ],
@@ -129,7 +145,7 @@ class _OneWayScreenState extends State<OneWayScreen> {
             },
             icon: Icons.people,
             content: Text(
-              '$adultNumber Adult${childNumber > 0 ? ', $childNumber Child' : ''}${infantNumber > 0 ? ', $infantNumber Infant' : ''}',
+              '$adultNumber ${LocaleKeys.adult.tr()}${childNumber > 0 ? ', $childNumber ${LocaleKeys.child.tr()}' : ''}${infantNumber > 0 ? ', $infantNumber ${LocaleKeys.infant.tr()}' : ''}',
               style:
                   TextStyle(color: AppColors.defaultGreyColor, fontSize: 16.0),
             ),
@@ -173,26 +189,22 @@ class _OneWayScreenState extends State<OneWayScreen> {
             },
             icon: Icons.credit_card_rounded,
             content: Text(
-              '${isVisaChoosed == false && isMasterCardChoosed == false ? 'Choose' : (isVisaChoosed ? 'Visa Debit' : '')}${isMasterCardChoosed ? (isVisaChoosed ? ', MasterCard Debit' : 'MasterCard Debit') : ''}',
+              '${isVisaChoosed == false && isMasterCardChoosed == false ? LocaleKeys.choose.tr() : (isVisaChoosed ? 'Visa Debit' : '')}${isMasterCardChoosed ? (isVisaChoosed ? ', MasterCard Debit' : 'MasterCard Debit') : ''}',
               style:
                   TextStyle(color: AppColors.defaultGreyColor, fontSize: 16.0),
             ),
           ),
           const Spacer(),
-          MaterialButton(
-            minWidth: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 20.0),
-            onPressed: () {},
-            child: const Text(
-              'SEARCH FLIGHT',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                letterSpacing: 2.0,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            color: const Color.fromARGB(255, 255, 169, 41),
+          DefaultButton(
+            text: LocaleKeys.searchFlight.tr(),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FlightSearchScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),

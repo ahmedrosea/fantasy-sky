@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wego_clone/components/passengers/passengers_item.dart';
 import 'package:wego_clone/state-management/provider.dart';
+import 'package:wego_clone/translations/locale_keys.g.dart';
 
 import '../../../app_colors.dart';
 
@@ -17,7 +19,7 @@ class PassengersScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.defaultThemeColor,
         elevation: 0.0,
-        title: const Text('Passengers'),
+        title: Text(LocaleKeys.passengers.tr()),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
@@ -51,7 +53,7 @@ class PassengersScreen extends StatelessWidget {
           PassengerItem(
             icon: Icons.man_outlined,
             isFirst: true,
-            text: '$adultNumber Adult',
+            text: '$adultNumber ${LocaleKeys.adult.tr()}',
             condition: '(>12 years)',
             whenMinusPressed: () {
               context.read<FlightProvider>().decreaseAdultNumber();
@@ -65,7 +67,7 @@ class PassengersScreen extends StatelessWidget {
           ),
           PassengerItem(
             icon: Icons.boy_outlined,
-            text: '$childNumber Child',
+            text: '$childNumber ${LocaleKeys.child.tr()}',
             condition: '(2-12 years)',
             whenMinusPressed: () {
               context.read<FlightProvider>().decreaseChildNumber();
@@ -79,7 +81,7 @@ class PassengersScreen extends StatelessWidget {
           ),
           PassengerItem(
             icon: Icons.child_care_rounded,
-            text: '$infantNumber Infant',
+            text: '$infantNumber ${LocaleKeys.infant.tr()}',
             condition: '(<2 years)',
             whenMinusPressed: () {
               context.read<FlightProvider>().decreaseInfantNumber();

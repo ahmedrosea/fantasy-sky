@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../app_colors.dart';
 import '../../../components/departure/departure_item.dart';
+import '../../../state-management/provider.dart';
 
 class ArrivalScreen extends StatelessWidget {
   const ArrivalScreen({Key? key}) : super(key: key);
@@ -36,7 +38,12 @@ class ArrivalScreen extends StatelessWidget {
               ),
               DepartureItem(
                 cardTitle: 'Cairo Airport',
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<FlightProvider>()
+                      .setArrival('Cairo Airport', 'CAI');
+                  Navigator.pop(context);
+                },
                 cardIcon: Icon(
                   Icons.flight_outlined,
                   size: 26.0,
@@ -47,7 +54,12 @@ class ArrivalScreen extends StatelessWidget {
               ),
               DepartureItem(
                 cardTitle: 'Sphinix International Airport',
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<FlightProvider>()
+                      .setArrival('Sphinix International Airport', 'SPX');
+                  Navigator.pop(context);
+                },
                 cardIcon: Icon(
                   Icons.flight_outlined,
                   size: 26.0,
@@ -58,7 +70,12 @@ class ArrivalScreen extends StatelessWidget {
               ),
               DepartureItem(
                 cardTitle: 'Alexandria Airport',
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<FlightProvider>()
+                      .setArrival('Alexandria Airport', 'HBE');
+                  Navigator.pop(context);
+                },
                 cardIcon: Icon(
                   Icons.flight_outlined,
                   size: 26.0,

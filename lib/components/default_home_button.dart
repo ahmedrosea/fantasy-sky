@@ -37,7 +37,7 @@ class DefaultHomeButton extends StatelessWidget {
             ),
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.8),
             boxShadow: [
               BoxShadow(
                 color: Colors.black12.withAlpha(15),

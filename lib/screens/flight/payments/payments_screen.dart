@@ -18,10 +18,6 @@ class PaymentsScreen extends StatelessWidget {
         elevation: 0.0,
         title: const Text('Payments'),
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back,
-          size: 0.0,
-        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
