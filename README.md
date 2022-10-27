@@ -1,16 +1,6 @@
-# wego_clone
+# Fantasy Sky
 
-A new Flutter project.
+Fantasy Sky is an app that allows the user to book flights and hotel rooms with extra services such as rent cars and some VR tours for a Tourist Attractions.
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+when the user download the app he will register an account then he will have the choice between the app languages such like Arabic and English and also between several payment ways such like Visa and Mastercard then he can start booking flights and hotel rooms he will have the choice between a lot of room with various options and can have a tour in our VR Tours sections where he can look at some tourist attractions in VR Mode.
